@@ -1,62 +1,105 @@
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
-import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
 
-import AppNavigator from './navigation/AppNavigator';
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { Dimensions } from 'react-native';
 
-export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+import { Feather } from '@expo/vector-icons';
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
-      />
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
-    );
-  }
-}
+import {
+  ProfileScreen,
+  MessageScreen,
+  ActivityScreen,
+  ListScreen,
+  ReportScreen,
+  StatisticScreen,
+  SignOutScreen
+} from './screens';
 
-async function loadResourcesAsync() {
-  await Promise.all([
-    Asset.loadAsync([
-      require('./assets/images/robot-dev.png'),
-      require('./assets/images/robot-prod.png'),
-    ]),
-    Font.loadAsync({
-      // This is the font that we are using for our tab bar
-      ...Ionicons.font,
-      // We include SpaceMono because we use it in HomeScreen.js. Feel free to
-      // remove this if you are not using it in your app
-      'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-    }),
-  ]);
-}
+import SideBar from './components/SideBar';
 
-function handleLoadingError(error) {
-  // In this case, you might want to report the error to your error reporting
-  // service, for example Sentry
-  console.warn(error);
-}
-
-function handleFinishLoading(setLoadingComplete) {
-  setLoadingComplete(true);
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="user" size={16} color={tintColor} />
+        )
+      }
+    },
+    Message: {
+      screen: MessageScreen,
+      navigationOptions: {
+        title: 'Messages',
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="message-square" size={16} color={tintColor} />
+        )
+      }
+    },
+    Activity: {
+      screen: ActivityScreen,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="activity" size={16} color={tintColor} />
+        )
+      }
+    },
+    List: {
+      screen: ListScreen,
+      navigationOptions: {
+        title: 'Lists',
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="list" size={16} color={tintColor} />
+        )
+      }
+    },
+    Report: {
+      screen: ReportScreen,
+      navigationOptions: {
+        title: 'Reports',
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="bar-chart" size={16} color={tintColor} />
+        )
+      }
+    },
+    Statistic: {
+      screen: StatisticScreen,
+      navigationOptions: {
+        title: 'Statistics',
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="trending-up" size={16} color={tintColor} />
+        )
+      }
+    },
+    SignOut: {
+      screen: SignOutScreen,
+      navigationOptions: {
+        title: 'Sign Out',
+        drawerIcon: ({ tintColor }) => (
+          <Feather name="log-out" size={16} color={tintColor} />
+        )
+      }
+    }
   },
-});
+  {
+    contentComponent: props => <SideBar {...props} />,
+
+    drawerWidth: Dimensions.get('window').width * 0.85,
+    hideStatusBar: true,
+
+    contentOptions: {
+      activeBackgroundColor: 'rgba(212,118,207, 0.2)',
+      activeTintColor: '#53115B',
+      itemsContainerStyle: {
+        marginTop: 16,
+        marginHorizontal: 8
+      },
+      itemStyle: {
+        borderRadius: 4
+      }
+    }
+  }
+);
+
+export default createAppContainer(DrawerNavigator);
