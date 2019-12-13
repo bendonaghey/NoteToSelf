@@ -22,7 +22,7 @@ export default class Screen extends React.Component {
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={styles.text}>{this.props.name} Screen</Text>
+            <Text style={styles.text}>Home Screen</Text>
           </View>
         </SafeAreaView>
       </View>

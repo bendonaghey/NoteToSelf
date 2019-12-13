@@ -1,83 +1,35 @@
 import React from 'react';
-
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { Dimensions } from 'react-native';
-
 import { Feather } from '@expo/vector-icons';
-
-import {
-  ProfileScreen,
-  MessageScreen,
-  ActivityScreen,
-  ListScreen,
-  ReportScreen,
-  StatisticScreen,
-  SignOutScreen
-} from './screens';
-
-import SideBar from './components/SideBar';
+import { HomeScreen, NotesScreen, CalendarScreen } from './src/screens';
+import SideBar from './src/components/SideBar';
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Profile: {
-      screen: ProfileScreen,
+    Home: {
+      screen: HomeScreen,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
-          <Feather name="user" size={16} color={tintColor} />
+          <Feather name="home" size={16} color={tintColor} />
         )
       }
     },
-    Message: {
-      screen: MessageScreen,
+    Notes: {
+      screen: NotesScreen,
       navigationOptions: {
-        title: 'Messages',
+        title: 'Notes',
         drawerIcon: ({ tintColor }) => (
-          <Feather name="message-square" size={16} color={tintColor} />
+          <Feather name="book-open" size={16} color={tintColor} />
         )
       }
     },
-    Activity: {
-      screen: ActivityScreen,
+    Calendar: {
+      screen: CalendarScreen,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
-          <Feather name="activity" size={16} color={tintColor} />
-        )
-      }
-    },
-    List: {
-      screen: ListScreen,
-      navigationOptions: {
-        title: 'Lists',
-        drawerIcon: ({ tintColor }) => (
-          <Feather name="list" size={16} color={tintColor} />
-        )
-      }
-    },
-    Report: {
-      screen: ReportScreen,
-      navigationOptions: {
-        title: 'Reports',
-        drawerIcon: ({ tintColor }) => (
-          <Feather name="bar-chart" size={16} color={tintColor} />
-        )
-      }
-    },
-    Statistic: {
-      screen: StatisticScreen,
-      navigationOptions: {
-        title: 'Statistics',
-        drawerIcon: ({ tintColor }) => (
-          <Feather name="trending-up" size={16} color={tintColor} />
-        )
-      }
-    },
-    SignOut: {
-      screen: SignOutScreen,
-      navigationOptions: {
-        title: 'Sign Out',
-        drawerIcon: ({ tintColor }) => (
-          <Feather name="log-out" size={16} color={tintColor} />
+          <Feather name="calendar" size={16} color={tintColor} />
         )
       }
     }
