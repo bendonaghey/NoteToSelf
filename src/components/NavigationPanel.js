@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default class Screen extends React.Component {
+export default class NavigationPanel extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -22,7 +22,7 @@ export default class Screen extends React.Component {
           <View
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={styles.text}>Calendar Screen</Text>
+            <Text style={styles.text}>Home Screen</Text>
           </View>
         </SafeAreaView>
       </View>
