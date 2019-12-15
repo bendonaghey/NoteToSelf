@@ -13,7 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 export default SideBar = props => (
   <ScrollView>
     <ImageBackground
-      source={require('../assets/images/background.png')}
+      source={require('../../assets/images/background.png')}
       style={{ width: undefined, padding: 16, paddingTop: 48 }}
     >
       <Text style={styles.name}>Jodie Harris</Text>
