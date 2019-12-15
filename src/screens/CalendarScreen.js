@@ -37,19 +37,17 @@ export default class Screen extends React.Component {
           >
             <FontAwesome5 name="bars" size={24} color="#161924" />
           </TouchableOpacity>
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          >
+          <View style={{ flex: 1, alignItems: 'center', marginTop: -25 }}>
             <Text style={styles.text}>Calendar Screen</Text>
+            <CalendarPicker
+              style={styles.calendarStyle}
+              onDateChange={this.onDateChange}
+            />
+            <View>
+              <Text>SELECTED DATE:{startDate}</Text>
+            </View>
           </View>
         </SafeAreaView>
-        <CalendarPicker
-          style={styles.calendarStyle}
-          onDateChange={this.onDateChange}
-        />
-        <View>
-          <Text>SELECTED DATE:{startDate}</Text>
-        </View>
       </View>
     );
   }
@@ -63,12 +61,11 @@ const styles = StyleSheet.create({
   text: {
     color: '#161924',
     fontSize: 20,
-    marginTop: -270,
-    fontWeight: '500'
+    fontWeight: '500',
+    marginBottom: 50
   },
   calendarStyle: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginTop: -200
+    backgroundColor: '#FFFFFF'
   }
 });

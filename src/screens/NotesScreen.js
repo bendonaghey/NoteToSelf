@@ -44,9 +44,7 @@ export default class AddItem extends Component {
           >
             <FontAwesome5 name="bars" size={24} color="#161924" />
           </TouchableOpacity>
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          >
+          <View style={{ flex: 1, alignItems: 'center', marginTop: -25 }}>
             <Text style={styles.text}>Notes Screen</Text>
           </View>
         </SafeAreaView>
