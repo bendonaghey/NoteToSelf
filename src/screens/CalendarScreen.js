@@ -7,9 +7,27 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import CalendarPicker from 'react-native-calendar-picker';
 
 export default class Screen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedStartDate: null
+    };
+    this.onDateChange = this.onDateChange.bind(this);
+  }
+
+  onDateChange(date) {
+    this.setState({
+      selectedStartDate: date
+    });
+  }
+
   render() {
+    const { selectedStartDate } = this.state;
+    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+
     return (
       <View style={styles.container}>
         <SafeAreaView style={{ flex: 1 }}>
@@ -25,6 +43,13 @@ export default class Screen extends React.Component {
             <Text style={styles.text}>Calendar Screen</Text>
           </View>
         </SafeAreaView>
+        <CalendarPicker
+          style={styles.calendarStyle}
+          onDateChange={this.onDateChange}
+        />
+        <View>
+          <Text>SELECTED DATE:{startDate}</Text>
+        </View>
       </View>
     );
   }
@@ -38,6 +63,12 @@ const styles = StyleSheet.create({
   text: {
     color: '#161924',
     fontSize: 20,
+    marginTop: -270,
     fontWeight: '500'
+  },
+  calendarStyle: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    marginTop: -200
   }
 });
